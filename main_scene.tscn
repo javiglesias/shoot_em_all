@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://user_interface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main_scene.gd" type="Script" id=3]
+[ext_resource path="res://resources/win.png" type="Texture" id=4]
+[ext_resource path="res://resources/lose.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 296 )
+
+[node name="main_scene" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 40, 552 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="collision_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_area"]
+position = Vector2( 512, 296 )
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="canvas_ui" type="CanvasLayer" parent="."]
+
+[node name="lose_screen" type="TextureRect" parent="canvas_ui"]
+visible = false
+anchor_left = 0.008
+anchor_top = 0.008
+anchor_right = 0.949
+anchor_bottom = 0.925
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="user_interface" parent="canvas_ui" instance=ExtResource( 2 )]
+
+[node name="objective" type="Label" parent="canvas_ui"]
+margin_top = 8.0
+margin_right = 139.0
+margin_bottom = 22.0
+text = "OBJECTIVE : 150 KILLS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="instructions" type="Label" parent="canvas_ui"]
+margin_left = 72.0
+margin_top = 200.0
+margin_right = 572.0
+margin_bottom = 270.0
+rect_scale = Vector2( 1.72, 1.76 )
+text = "1 player kill increments counter.
+1 player hit decrements the counter.
+If your counter go down to 0, you loose, if the counter go up to 150, you win.
+Press 'WASD' to move
+Press 'E' to shoot
+Press 'ESC' to exit
+-Now, press 'E' to start killing spaceships like a boss-
+ez pizi."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="win_screen" type="TextureRect" parent="canvas_ui"]
+visible = false
+anchor_left = 0.008
+anchor_right = 0.742
+anchor_bottom = 0.775
+margin_right = 256.0
+margin_bottom = 128.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
