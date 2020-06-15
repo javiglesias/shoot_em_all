@@ -1,18 +1,12 @@
-extends KinematicBody2D
+extends Area2D
 
-# Declare member variables here. Examples:
-var speed = 400
-var vel: Vector2 = Vector2()
-var screen_width = ProjectSettings.get_setting("display/window/size/width")
-var screen_height = ProjectSettings.get_setting("display/window/size/height")
+var speed = 50
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	vel.y = 0
-	vel.y -=speed
-	vel = move_and_slide(vel, Vector2.UP)
-	pass
+	position.y -= speed
+
+
+func _on_bullet_body_entered(body):
+	if body.name.find("enemy",0) != -1:
+		body.hit()
+		queue_free()

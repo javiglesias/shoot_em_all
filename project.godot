@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="shoot_em_all"
 run/main_scene="res://main_scene.tscn"
-config/icon="res://icon.png"
+config/icon="res://resources/spaceship.png"
 
 [input]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://user_interface.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main_scene.gd" type="Script" id=3]
 [ext_resource path="res://resources/win.png" type="Texture" id=4]
 [ext_resource path="res://resources/lose.png" type="Texture" id=5]
+[ext_resource path="res://audio_player.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 296 )
@@ -13,8 +14,8 @@ extents = Vector2( 512, 296 )
 script = ExtResource( 3 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40, 552 )
-scale = Vector2( 0.4, 0.4 )
+position = Vector2( 512, 296 )
+scale = Vector2( 0.3, 0.3 )
 
 [node name="collision_area" type="Area2D" parent="."]
 
@@ -56,8 +57,8 @@ margin_top = 200.0
 margin_right = 572.0
 margin_bottom = 270.0
 rect_scale = Vector2( 1.72, 1.76 )
-text = "1 player kill increments counter.
-1 player hit decrements the counter.
+text = "1 enemy spaceship kill (2 hits) increments counter.
+1 player hit with a spaceship decrements the counter.
 If your counter go down to 0, you loose, if the counter go up to 150, you win.
 Press 'WASD' to move
 Press 'E' to shoot
@@ -80,3 +81,6 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="audio_player" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 6 )
